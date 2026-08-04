@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>님아 그 선을 넘지 마오</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 시작 / 스토리 UI — 내용은 story.js 가 채움, 완료 시 app.js 가 게임으로 전환 -->
+    <main id="start_screen" class="start-screen screen">
+        <div id="placeholder" class="placeholder">
+            <p id="story_text"></p>
+            <p id="story_hint" class="story-hint"></p>
+            <button id="start_button" type="button">다음</button>
+        </div>
+    </main>
+
+    <!-- 게임플레이 -->
+    <div id="gameplay_screen" class="screen hidden">
+        <div id="topUi" class="top-ui">
+            <section class="brand-box">
+                <h2>님아 그 선을 넘지마오</h2>
+                <p class="brand-sub">웹으로 만드는 디펜스 게임</p>
+            </section>
+
+            <section class="stats-box">
+                <div class="stats">
+                    <span id="moneyText">코인 500</span>
+                    <span id="stageText">Wave 1/5</span>
+                    <div id="livesUi" class="lives-ui" aria-label="남은 생명 3개">
+                        <span class="lives-label">생명</span>
+                        <i class="heart-icon fa-solid fa-heart" aria-hidden="true"></i>
+                        <i class="heart-icon fa-solid fa-heart" aria-hidden="true"></i>
+                        <i class="heart-icon fa-solid fa-heart" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="timer">
+                    <span id="timeText">준비 22</span>
+                    <div class="time-bar"><span id="timeBar"></span></div>
+                </div>
+            </section>
+
+            <section class="weapon-box">
+                <p id="tipText">원거리 공격 / 배치한 칸을 누르면 강화</p>
+                <div class="weapon-list">
+                    <button class="weapon-card active" data-weapon="gun" type="button">
+                        <b>총</b>
+                        <small>비용 75</small>
+                    </button>
+                    <button class="weapon-card" data-weapon="sword" type="button">
+                        <b>검</b>
+                        <small>비용 50</small>
+                    </button>
+                    <button class="weapon-card" data-weapon="shield" type="button">
+                        <b>방패</b>
+                        <small>비용 40</small>
+                    </button>
+                </div>
+            </section>
+
+            <section class="action-box">
+                <div class="speed-list" role="group" aria-label="배속">
+                    <button class="speed-button active" data-speed="1" type="button">1x</button>
+                    <button class="speed-button" data-speed="2" type="button">2x</button>
+                    <button class="speed-button" data-speed="3" type="button">3x</button>
+                </div>
+                <button id="battleButton" class="battle-button" type="button">전투 시작</button>
+            </section>
+        </div>
+
+        <div id="messageBox" class="message-box">칸을 눌러 유닛을 배치하세요.</div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- 엔딩 -->
+    <div id="ending_screen" class="ending screen hidden">
+        <div id="ending_success" class="placeholder ending-panel success hidden">
+            <p id="ending_success_text"></p>
+            <button id="restart_success" type="button">다시 하기</button>
+        </div>
+        <div id="ending_failed" class="placeholder ending-panel failed hidden">
+            <p id="ending_failed_text"></p>
+            <button id="restart_failed" type="button">다시 하기</button>
+        </div>
+    </div>
+
+    <!-- story.js: 스토리 텍스트·페이지 넘김 / game.js: 전투 / app.js: 화면 전환 연동 -->
+    <script src="story.js"></script>
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
